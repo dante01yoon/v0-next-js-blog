@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { PostCard } from "@/components/post-card"
 import { Button } from "@/components/ui/button"
 import { getAllTags, getPostsByTag } from "@/lib/post-utils"
-import { allPosts } from "@/.contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 
 const POSTS_PER_PAGE = 6
 

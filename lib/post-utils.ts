@@ -1,4 +1,4 @@
-import { allPosts } from "@/.contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 
 export interface PostMetadata {
   title: string
