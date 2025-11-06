@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { PostCard } from "@/components/post-card"
-import { allPosts } from "@/.contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 
 export default function Home() {
   const featuredPosts = allPosts

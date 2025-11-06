@@ -5,14 +5,15 @@ import type { Metadata } from "next"
 import type { MDXContent } from "contentlayer/core"
 import { RelatedPosts } from "@/components/related-posts"
 import { formatDate, getPostBySlug, getRelatedPosts, getAllPostSlugs } from "@/lib/post-utils"
-import { allPosts } from "@/.contentlayer/generated"
+import { allPosts } from "contentlayer/generated"
 
 export async function generateStaticParams() {
   return getAllPostSlugs()
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = getPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
 
   if (!post) {
     return {
@@ -48,14 +49,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
 
   if (!post) {
     notFound()
   }
 
-  const relatedPosts = getRelatedPosts(params.slug, 3)
+  const relatedPosts = getRelatedPosts(slug, 3)
 
   // Serialize MDX body for rendering
   const Content = post.body.raw as unknown as MDXContent
