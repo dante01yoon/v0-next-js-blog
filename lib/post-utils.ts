@@ -73,7 +73,7 @@ export const getRelatedPosts = (currentSlug: string, limit = 3) => {
   const related = allPosts
     .filter((post) => post.slug !== currentSlug)
     .map((post) => {
-      const sharedTags = post.tags filter((tag) => currentPost.tags.includes(tag)).length
+      const sharedTags = post.tags.filter((tag) => currentPost.tags.includes(tag)).length
       return { post, sharedTags }
     })
     .filter(({ sharedTags }) => sharedTags > 0)
