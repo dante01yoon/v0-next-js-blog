@@ -4,7 +4,7 @@ slug: "ai-2025-daily-life"
 excerpt: "How artificial intelligence is quietly revolutionizing the way we work, learn, and live in 2025."
 tags: ["Future Tech", "AI Applications", "Technology"]
 publishedAt: "2025-10-01"
-heroImage: "/placeholder.svg?height=630&width=1200"
+heroImage: "/placeholder.jpg"
 author: "Emma Rodriguez"
 ---
 

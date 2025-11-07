@@ -4,7 +4,7 @@ slug: "multimodal-ai-models"
 excerpt: "How AI systems that understand and generate multiple modalities are revolutionizing machine learning."
 tags: ["AI Research", "Deep Learning", "Computer Vision"]
 publishedAt: "2025-10-15"
-heroImage: "/placeholder.svg?height=630&width=1200"
+heroImage: "/placeholder.jpg"
 author: "Dr. James Wilson"
 ---
 

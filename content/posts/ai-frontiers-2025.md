@@ -4,7 +4,7 @@ slug: "ai-frontiers-2025"
 excerpt: "Deep insights into AI, GenAI, Computer Vision, and Deep Learning advancements in 2025 and beyond."
 tags: ["AI Research", "Machine Learning", "Technology"]
 publishedAt: "2025-11-06"
-heroImage: "/placeholder.svg?height=630&width=1200"
+heroImage: "/placeholder.jpg"
 author: "Dr. Sarah Chen"
 ---
 

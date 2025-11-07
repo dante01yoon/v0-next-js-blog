@@ -4,7 +4,7 @@ slug: "prompt-engineering-playbook"
 excerpt: "Practical strategies to design, test, and iterate prompts that unlock consistent results from generative AI systems."
 tags: ["prompt-engineering"]
 publishedAt: "2025-11-08"
-heroImage: "/placeholder.svg?height=630&width=1200"
+heroImage: "/placeholder.jpg"
 author: "Lena Park"
 ---
 
