@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { PostCard } from "@/components/post-card"
 import { allPosts } from "contentlayer/generated"
+import { withBasePath } from "@/lib/base-path"
 
 export default function Home() {
   const featuredPosts = allPosts
@@ -35,7 +36,7 @@ export default function Home() {
 
             <div className="relative h-64 md:h-80">
               <Image
-                src="/robot-artificial-intelligence.jpg"
+                src={withBasePath("/robot-artificial-intelligence.jpg")}
                 alt="AI Robot"
                 fill
                 className="object-cover rounded-lg"

@@ -6,6 +6,7 @@ import type { MDXContent } from "contentlayer/core"
 import { RelatedPosts } from "@/components/related-posts"
 import { formatDate, getPostBySlug, getRelatedPosts, getAllPostSlugs } from "@/lib/post-utils"
 import { allPosts } from "contentlayer/generated"
+import { withBasePath } from "@/lib/base-path"
 
 export async function generateStaticParams() {
   return getAllPostSlugs()
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.excerpt,
       images: [
         {
-          url: post.heroImage,
+          url: withBasePath(post.heroImage),
           width: 1200,
           height: 630,
           alt: post.title,
@@ -44,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [post.heroImage],
+      images: [withBasePath(post.heroImage)],
     },
   }
 }
@@ -111,7 +112,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         {/* Hero Image */}
         <div className="relative mb-12 h-96 w-full overflow-hidden rounded-lg bg-muted">
-          <Image src={post.heroImage || "/placeholder.svg"} alt={post.title} fill className="object-cover" priority />
+          <Image src={withBasePath(post.heroImage || "/placeholder.jpg")} alt={post.title} fill className="object-cover" priority />
         </div>
 
         {/* Main Content */}
@@ -169,7 +170,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               title: p.title,
               excerpt: p.excerpt,
               publishedAt: p.publishedAt,
-              heroImage: p.heroImage,
+              heroImage: withBasePath(p.heroImage || "/placeholder.jpg"),
               tags: p.tags,
             }))}
           />

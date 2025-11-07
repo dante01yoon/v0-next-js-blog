@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { TagPill } from "./tag-pill"
 import { formatDate } from "@/lib/post-utils"
+import { withBasePath } from "@/lib/base-path"
 
 interface PostCardProps {
   title: string
@@ -22,7 +23,7 @@ export function PostCard({ title, excerpt, slug, tags, publishedAt, heroImage, r
         {/* Hero Image */}
         <div className="relative h-48 w-full overflow-hidden bg-muted">
           <Image
-            src={heroImage || "/placeholder.svg"}
+            src={withBasePath(heroImage || "/placeholder.jpg")}
             alt={title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"

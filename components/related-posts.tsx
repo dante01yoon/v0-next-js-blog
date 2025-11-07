@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { TagPill } from "./tag-pill"
 import { formatDate } from "@/lib/post-utils"
+import { withBasePath } from "@/lib/base-path"
 
 interface RelatedPost {
   slug: string
@@ -32,7 +33,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
               {/* Hero Image */}
               <div className="relative h-40 w-full overflow-hidden bg-muted">
                 <Image
-                  src={post.heroImage || "/placeholder.svg"}
+                  src={withBasePath(post.heroImage || "/placeholder.jpg")}
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
