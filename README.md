@@ -66,7 +66,7 @@ To add a new blog post:
 1. Create a new `.md` file in `content/posts/` (e.g., `my-new-post.md`)
 2. Add the required frontmatter at the top
 3. Write your content in Markdown
-4. Run `npm run build` to generate static files
+4. Run `pnpm build` to generate static files
 5. The post will automatically appear on `/posts` and have its own page at `/posts/[slug]`
 
 Example:
@@ -142,14 +142,18 @@ const POSTS_PER_PAGE = 6 // Change to desired number
 
 ## Environment Variables
 
-No environment variables required for basic functionality. The blog works entirely with static files.
+대부분의 기능은 환경 변수 없이 동작합니다. 다만 GitHub Pages처럼 서브 디렉터리에 배포할 때는 정적 자산 경로를 맞추기 위해 `NEXT_PUBLIC_BASE_PATH`를 사용할 수 있습니다.
+
+| Name | Required | Description |
+| ---- | -------- | ----------- |
+| `NEXT_PUBLIC_BASE_PATH` | Optional | `/repo-name` 형태로 입력하면 빌드 시 `basePath`/`assetPrefix`가 자동으로 설정되어 GitHub Pages에서도 경로가 깨지지 않습니다. 로컬 개발이나 루트 도메인 배포 시에는 비워두면 됩니다. |
 
 ## Building & Deployment
 
 ### Build
 
 \`\`\`bash
-npm run build
+pnpm build
 \`\`\`
 
 This command:
@@ -157,16 +161,26 @@ This command:
 2. Generates static HTML pages
 3. Creates optimized production bundle
 
-### Deployment
+### Static Export & GitHub Pages
 
-Deploy to Vercel (recommended):
+\`\`\`bash
+NEXT_PUBLIC_BASE_PATH="/v0-next-js-blog" pnpm run deploy
+\`\`\`
+
+- Runs `next build --webpack` with `output: 'export'` enabled and writes the static site to `out/`.
+- Adjust the base path to match your repository name (omit it when deploying to a root domain).
+- `.github/workflows/deploy.yml` executes the same command on pushes to `main` and publishes the artifact to GitHub Pages automatically.
+
+### Other Hosts
+
+Deploy to Vercel (recommended for dynamic infrastructure):
 
 \`\`\`bash
 npm install -g vercel
 vercel
 \`\`\`
 
-Or deploy to any static host (Netlify, GitHub Pages, etc.).
+Or upload the generated `out/` directory to any static host (Netlify, Cloudflare Pages, etc.).
 
 ## Performance Tips
 
@@ -198,7 +212,7 @@ Or deploy to any static host (Netlify, GitHub Pages, etc.).
 **Posts not appearing?**
 - Ensure markdown files are in `content/posts/` directory
 - Check frontmatter format matches schema
-- Run `npm run build` to regenerate
+- Run `pnpm build` to regenerate
 
 **Theme not saving?**
 - Check localStorage is enabled in browser

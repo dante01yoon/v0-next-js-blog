@@ -26,6 +26,7 @@
 - styles/: Global CSS entry point
 - public/: Static assets served by Next.js
 - .codex/memory-bank/: Codex agent knowledge base (architecture notes, workflow reminders)
+- .github/workflows/: GitHub Pages deployment pipeline (deploy.yml)
 - contentlayer.config.ts: Post schema + MDX pipeline definition
 - next.config.mjs: Next.js configuration (Contentlayer plugin, Turbopack opt-in)
 - components.json: v0 component registry metadata
