@@ -29,6 +29,8 @@
 - contentlayer.config.ts: Post schema + MDX pipeline definition
 - next.config.mjs: Next.js configuration (Contentlayer plugin, Turbopack opt-in)
 - components.json: v0 component registry metadata
+- vercel.json: Vercel deployment definition (pnpm install/build, `vercel` branch gating)
+- .github/workflows/vercel-deploy.yml: GitHub Action that builds and deploys via Vercel CLI when `vercel` branch updates
 
 ## Data Flow
 1. Markdown files under content/posts/*.md are processed by Contentlayer using contentlayer.config.ts.
@@ -40,6 +42,7 @@
 - Dev server runs with `next dev --webpack` because Contentlayer's Webpack plugin handles generation; Turbopack is disabled.
 - ESLint build blocking is disabled; TypeScript build errors are ignored for rapid iteration.
 - Remote images are fully whitelisted and served unoptimized.
+- GitHub Actions pipeline deploys production via Vercel CLI using secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` whenever code lands on the `vercel` branch.
 
 ## Development Tips
 - Use `pnpm dev` (webpack) so Contentlayer regenerates content while developing; new Markdown posts appear after a restart if needed.

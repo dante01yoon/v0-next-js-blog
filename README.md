@@ -142,7 +142,7 @@ const POSTS_PER_PAGE = 6 // Change to desired number
 
 ## Environment Variables
 
-No environment variables required for basic functionality. The blog works entirely with static files.
+The site itself does not rely on runtime environment variables, so local development works out of the box. Automated Vercel deploys, however, expect the following GitHub Actions secrets to be populated with values from your Vercel project: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
 
 ## Building & Deployment
 
@@ -159,14 +159,19 @@ This command:
 
 ### Deployment
 
-Deploy to Vercel (recommended):
+Automated production deploys run via `.github/workflows/vercel-deploy.yml` whenever the `vercel` branch is updated. To enable them:
+
+1. Create a Vercel project for this repo and set its production branch to `vercel` (the same branch you push live-ready code to).
+2. Add these repository secrets in GitHub → Settings → Secrets and variables → Actions: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` (copy from the Vercel dashboard or `pnpm dlx vercel link` output).
+3. Push to `vercel`. The workflow installs dependencies with pnpm, runs `vercel pull` to sync env vars, builds with `vercel build --prod`, and promotes the artifact via `vercel deploy --prebuilt --prod`.
+
+For a manual deploy you can still run:
 
 \`\`\`bash
-npm install -g vercel
-vercel
+pnpm dlx vercel --prod
 \`\`\`
 
-Or deploy to any static host (Netlify, GitHub Pages, etc.).
+The app can also be hosted on any platform that supports Next.js after running `pnpm build`.
 
 ## Performance Tips
 
