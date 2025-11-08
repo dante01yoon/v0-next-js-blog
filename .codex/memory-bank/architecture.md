@@ -40,6 +40,7 @@
 
 ## Notable Behaviours
 - Dev server runs with `next dev --webpack` because Contentlayer's Webpack plugin handles generation; Turbopack is disabled.
+- Production builds also force webpack via `next build --webpack` (see `package.json` scripts) to remain compatible with Contentlayer until equivalent Turbopack loaders exist.
 - ESLint build blocking is disabled; TypeScript build errors are ignored for rapid iteration.
 - Remote images are fully whitelisted and served unoptimized.
 - GitHub Actions pipeline deploys production via Vercel CLI using secrets `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` whenever code lands on the `vercel` branch.

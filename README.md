@@ -155,7 +155,7 @@ npm run build
 This command:
 1. Processes all Markdown files with Contentlayer
 2. Generates static HTML pages
-3. Creates optimized production bundle
+3. Creates optimized production bundle (we force webpack via `next build --webpack` to stay compatible with Contentlayer's webpack plugin)
 
 ### Deployment
 
